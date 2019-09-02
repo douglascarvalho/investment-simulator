@@ -1,5 +1,5 @@
 include ':app',
+        ':feature:simulation',
+        ':lib:network',
         ':lib:ui',
-        ':lib:core',
-        ':feature:simulation'
-
+        ':lib:core'
