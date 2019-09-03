@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">simulation</string>
+    <string name="simulate">Simular</string>
+    <string name="rate_hint">100%</string>
+    <string name="which_CDI_percent">Qual o percentual do CDI do investimento? *</string>
+    <string name="date_hint">dia/mês/ano</string>
+    <string name="which_maturity_date">Qual a data de vencimento do investmento? *</string>
+    <string name="amount_hint">R$</string>
+    <string name="how_much_to_invest">Quanto você gostaria de aplicar? *</string>
 </resources>
