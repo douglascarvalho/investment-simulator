@@ -13,6 +13,6 @@ interface SimulateApi {
         @Query("rate") rate: String,
         @Query("isTaxFree") taxFree: Boolean,
         @Query("maturityDate") maturityDate: String
-    ): SimulationResponse
+    ): SimulationResponse?
 
 }

@@ -9,6 +9,7 @@
     <string name="how_much_to_invest">Quanto você gostaria de aplicar? *</string>
 
     <string name="error_message">Ops, tivemos um problema com a sua requisição!</string>
+    <string name="network_error_message">Ops, estamos em manutenção, voltamos já!</string>
 
     <string name="result_description">Rendimento total de %s</string>
     <string name="total_value">Valor bruto do investimento</string>

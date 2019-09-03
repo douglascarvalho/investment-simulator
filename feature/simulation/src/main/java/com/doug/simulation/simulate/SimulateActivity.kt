@@ -73,7 +73,8 @@ class SimulateActivity : BaseActivity(), FormValidation{
             hideLoading()
             when (it) {
                 is SimulateViewState.Success -> initResultActivity(it.simulationResult)
-                is SimulateViewState.Error -> showErrorMessage()
+                is SimulateViewState.Error -> showErrorMessage(getString(R.string.error_message))
+                is SimulateViewState.NetworkError -> showErrorMessage(getString(R.string.network_error_message))
             }
         })
     }
@@ -92,7 +93,8 @@ class SimulateActivity : BaseActivity(), FormValidation{
         progressBar.visibility = View.GONE
     }
 
-    private fun showErrorMessage() {
+    private fun showErrorMessage(message: String) {
+        errorMessage.text = message
         errorMessage.visibility = View.VISIBLE
     }
 

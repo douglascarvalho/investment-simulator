@@ -29,8 +29,13 @@ class SimulateViewModel(
                     investedAmount = BigDecimal(amount), rate = rate, maturityDate = maturityDate
                 )
                 val simulationResponse = simulateRepository.simulate(request)
-                val result = resultMapper.mapToSimulationResult(simulationResponse)
 
+                if (simulationResponse == null) {
+                    state.value = SimulateViewState.NetworkError
+                    return@launch
+                }
+
+                val result = resultMapper.mapToSimulationResult(simulationResponse)
                 state.value = SimulateViewState.Success(result)
             } catch (e: Exception) {
                 state.value = SimulateViewState.Error

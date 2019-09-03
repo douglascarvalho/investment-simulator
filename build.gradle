@@ -25,6 +25,8 @@ allprojects {
     }
 }
 
+
+
 subprojects {
     afterEvaluate { project ->
         if (project.plugins.findPlugin('android') ?: project.plugins.findPlugin('android-library')) {
