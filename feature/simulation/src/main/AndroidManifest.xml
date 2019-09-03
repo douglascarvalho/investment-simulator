@@ -1,9 +1,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.doug.simulation" >
 
-    <application>
-        <activity android:name=".simulate.SimulateActivity" />
-        <activity android:name=".result.SimulationResultActivity" />
+    <application android:usesCleartextTraffic="true">
+        <activity android:name=".simulate.SimulateActivity" android:theme="@style/AppTheme" />
+        <activity android:name=".result.SimulationResultActivity" android:theme="@style/AppTheme" />
     </application>
 
 </manifest>

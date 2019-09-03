@@ -1,0 +1,22 @@
+{
+  "investmentParameter": {
+    "investedAmount": 5.05,
+    "yearlyInterestRate": 6.8255,
+    "maturityTotalDays": 1616,
+    "maturityBusinessDays": 1148,
+    "maturityDate": "2024-02-05T00:00:00",
+    "rate": 0.0,
+    "isTaxFree": false
+  },
+  "grossAmount": 5.05,
+  "taxesAmount": 0.00,
+  "netAmount": 5.05,
+  "grossAmountProfit": 0.0000000000000001776356839400,
+  "netAmountProfit": 0.0000000000000001776356839400,
+  "annualGrossRateProfit": 0.00,
+  "monthlyGrossRateProfit": 0.55,
+  "dailyGrossRateProfit": 0.0,
+  "taxesRate": 15.0,
+  "rateProfit": 6.8255,
+  "annualNetRateProfit": 0.00
+}
