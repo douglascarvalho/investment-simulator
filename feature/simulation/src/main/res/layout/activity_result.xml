@@ -25,7 +25,7 @@
         />
 
     <TextView
-            android:id="@+id/txt_result_label"
+            android:id="@+id/result_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/simulation_result"
@@ -36,7 +36,7 @@
             app:layout_constraintTop_toTopOf="@id/top_margin"/>
 
     <TextView
-            android:id="@+id/txt_result_total_value"
+            android:id="@+id/result_total_value"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             tools:text="R$ 1.088,69"
@@ -45,10 +45,10 @@
             android:layout_marginTop="8dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txt_result_label"/>
+            app:layout_constraintTop_toBottomOf="@+id/result_label"/>
 
     <TextView
-            android:id="@+id/txt_result_total_revenue"
+            android:id="@+id/result_total_revenue"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             tools:text="Rendimento total de %s"
@@ -57,126 +57,126 @@
             android:label="@string/initial_value"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txt_result_total_value"/>
+            app:layout_constraintTop_toBottomOf="@+id/result_total_value"/>
 
     <com.doug.ui.InvestmentTextView
-            android:id="@+id/lbl_initial_value"
+            android:id="@+id/initial_value"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
             android:label="@string/initial_value"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txt_result_total_revenue"/>
+            app:layout_constraintTop_toBottomOf="@+id/result_total_revenue"/>
 
     <com.doug.ui.InvestmentTextView
-            android:id="@+id/lbl_total_value"
+            android:id="@+id/total_value"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:label="@string/total_value"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/lbl_initial_value"/>
+            app:layout_constraintTop_toBottomOf="@+id/initial_value"/>
 
     <com.doug.ui.InvestmentTextView
-            android:id="@+id/lbl_revenue_value"
+            android:id="@+id/revenue_value"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:label="@string/revenue_value"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/lbl_total_value"/>
+            app:layout_constraintTop_toBottomOf="@+id/total_value"/>
 
     <com.doug.ui.InvestmentTextView
-            android:id="@+id/lbl_tax_value"
+            android:id="@+id/tax_value"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:label="@string/tax_value"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/lbl_revenue_value"/>
+            app:layout_constraintTop_toBottomOf="@+id/revenue_value"/>
 
     <com.doug.ui.InvestmentTextView
-            android:id="@+id/lbl_net_value"
+            android:id="@+id/net_value"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:label="@string/net_value"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/lbl_tax_value"/>
+            app:layout_constraintTop_toBottomOf="@+id/tax_value"/>
 
     <com.doug.ui.InvestmentTextView
-            android:id="@+id/lbl_date"
+            android:id="@+id/date"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="24dp"
             android:label="@string/date"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/lbl_net_value"/>
+            app:layout_constraintTop_toBottomOf="@+id/net_value"/>
 
     <com.doug.ui.InvestmentTextView
-            android:id="@+id/lbl_counted_days"
+            android:id="@+id/counted_days"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:label="@string/counted_days"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/lbl_date"/>
+            app:layout_constraintTop_toBottomOf="@+id/date"/>
 
     <com.doug.ui.InvestmentTextView
-            android:id="@+id/lbl_monthly_revenue"
+            android:id="@+id/monthly_revenue"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:label="@string/monthly_revenue"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/lbl_counted_days"/>
+            app:layout_constraintTop_toBottomOf="@+id/counted_days"/>
 
     <com.doug.ui.InvestmentTextView
-            android:id="@+id/lbl_cdi_percent"
+            android:id="@+id/cdi_percent"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:label="@string/cdi_percent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/lbl_monthly_revenue"/>
+            app:layout_constraintTop_toBottomOf="@+id/monthly_revenue"/>
 
     <com.doug.ui.InvestmentTextView
-            android:id="@+id/lbl_annual_revenue"
+            android:id="@+id/annual_revenue"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:label="@string/annual_revenue"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/lbl_cdi_percent"/>
+            app:layout_constraintTop_toBottomOf="@+id/cdi_percent"/>
 
     <com.doug.ui.InvestmentTextView
-            android:id="@+id/lbl_period_profitability"
+            android:id="@+id/period_profitability"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:label="@string/period_profitability"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/lbl_annual_revenue"/>
+            app:layout_constraintTop_toBottomOf="@+id/annual_revenue"/>
 
     <Button
             style="@style/buttonInvestment"
-            android:id="@+id/frag_result_button"
+            android:id="@+id/simulate_again"
             android:layout_width="0dp"
             android:layout_height="40dp"
             android:layout_marginTop="24dp"
-            android:text="Simular novamente"
-            app:layout_constraintTop_toBottomOf="@+id/lbl_period_profitability"
+            android:text="@string/simulate_again"
+            app:layout_constraintTop_toBottomOf="@+id/period_profitability"
             app:layout_constraintBottom_toBottomOf="@id/bottom_margin"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"/>

@@ -25,4 +25,5 @@
     <string name="button_again">Simular novamente</string>
     <string name="simulation_result">Resultado da simulação</string>
     <string name="initial_value">Valor aplicado inicialmente</string>
+    <string name="simulate_again">Simular novamente</string>
 </resources>
