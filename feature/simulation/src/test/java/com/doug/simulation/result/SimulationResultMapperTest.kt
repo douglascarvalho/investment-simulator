@@ -1,12 +1,12 @@
 package com.doug.simulation.result
 
+import com.doug.simulation.INVALID_SIMULATION_RESPONSE_FILE
+import com.doug.simulation.JsonReader.getObjectFromJsonFile
+import com.doug.simulation.VALID_SIMULATION_RESPONSE_FILE
 import com.doug.simulation.data.SimulationResponse
-import com.google.gson.Gson
-import com.google.gson.stream.JsonReader
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNotNull
 import org.junit.Test
-import java.io.FileReader
 
 const val DOUBLE_DELTA = 000.1
 
@@ -17,7 +17,7 @@ class SimulationResultMapperTest {
 
     @Test
     fun givenValidResponseWhenMappedThenReturnMappedObject() {
-        simulationResponse = getResponseFromJson("simulateResponse.json")
+        simulationResponse = getObjectFromJsonFile(VALID_SIMULATION_RESPONSE_FILE)
 
         val mapped = simulationResultMapper.mapToSimulationResult(simulationResponse)
 
@@ -37,13 +37,8 @@ class SimulationResultMapperTest {
 
     @Test(expected = IllegalArgumentException::class)
     fun givenInvalidResponse_whenMapping_shoudThrownIllegalArgumentException() {
-        simulationResponse = getResponseFromJson("invalidSimulateResponse.json")
+        simulationResponse = getObjectFromJsonFile(INVALID_SIMULATION_RESPONSE_FILE)
         simulationResultMapper.mapToSimulationResult(simulationResponse)
-    }
-
-    private fun getResponseFromJson(fileName: String) : SimulationResponse {
-        val reader = JsonReader(FileReader("src/test/resources/json/${fileName}"))
-        return Gson().fromJson(reader, SimulationResponse::class.java)
     }
 
 }

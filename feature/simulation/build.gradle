@@ -1,6 +1,21 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 
+android {
+    sourceSets {
+        test {
+            java.srcDirs += ['src/sharedTest/java']
+            resources.srcDirs += ['src/sharedTest/resources']
+        }
+
+        androidTest {
+            java.srcDirs += ['src/sharedTest/java']
+            resources.srcDirs += ['src/sharedTest/resources']
+        }
+    }
+}
+
+
 dependencies {
     implementation project(':lib:ui')
     implementation project(':lib:network')

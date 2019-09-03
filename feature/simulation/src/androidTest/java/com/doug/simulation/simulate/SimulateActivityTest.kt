@@ -1,6 +1,5 @@
 package com.doug.simulation.simulate
 
-import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.test.espresso.Espresso
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.action.ViewActions.click
@@ -8,6 +7,9 @@ import androidx.test.espresso.action.ViewActions.typeText
 import androidx.test.espresso.matcher.ViewMatchers
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.rule.ActivityTestRule
+import com.doug.simulation.FULL_JSON_FILE_PATH
+import com.doug.simulation.JsonReader
+import com.doug.simulation.VALID_SIMULATION_RESPONSE_FILE
 import com.doug.simulation.data.SimulateApi
 import com.doug.simulation.data.source.SimulateRepository
 import com.doug.simulation.injection.initializeSimulateModule
@@ -40,20 +42,18 @@ class SimulateActivityTest  {
         server = MockWebServer()
         server.start()
 
-        val retrofit  = NetworkClient.retrofit(server.url("/").toString()).create(SimulateApi::class.java)
-        val repository = SimulateRepository(retrofit)
-        val mapper = SimulationResultMapper()
-        val viewModel = SimulateViewModel(repository, mapper)
+        val retrofit = NetworkClient
+            .retrofit(server.url("/").toString())
+            .create(SimulateApi::class.java)
 
         val simulateModule = module {
             single { retrofit }
-            single { repository }
-            single { mapper  }
-            viewModel { viewModel }
+            single { SimulateRepository(retrofit) }
+            single { SimulationResultMapper() }
+            viewModel { SimulateViewModel(get(), get()) }
         }
 
         startKoin {}
-
         mockkStatic("com.doug.simulation.injection.SimulateModuleKt")
         every { initializeSimulateModule() } returns loadKoinModules(simulateModule)
     }
@@ -65,24 +65,31 @@ class SimulateActivityTest  {
 
     @Test
     fun useAppContext() {
-
-        server.enqueue(MockResponse().setResponseCode(200).setBody(""" 
-{dfasdfasd}
-        """.trimIndent()))
+        server.enqueue(MockResponse().setResponseCode(200).setBody(
+            JsonReader.getStringFromJsonFile(VALID_SIMULATION_RESPONSE_FILE)
+        ))
 
         activityRule.launchActivity(null)
 
-        onView(ViewMatchers.withId(com.doug.simulation.R.id.amount)).perform(click()).perform(typeText("500"))
+        onView(ViewMatchers.withId(com.doug.simulation.R.id.amount))
+            .perform(click())
+            .perform(typeText("500"))
+
         Espresso.pressBack()
 
-        onView(ViewMatchers.withId(com.doug.simulation.R.id.maturity_date)).perform(click()).perform(typeText("05052020"))
+        onView(ViewMatchers.withId(com.doug.simulation.R.id.maturity_date))
+            .perform(click())
+            .perform(typeText("05052020"))
+
         Espresso.pressBack()
 
-        onView(ViewMatchers.withId(com.doug.simulation.R.id.rate)).perform(click()).perform(typeText("50"))
+        onView(ViewMatchers.withId(com.doug.simulation.R.id.rate))
+            .perform(click())
+            .perform(typeText("50"))
+
         Espresso.pressBack()
 
         onView(ViewMatchers.withId(com.doug.simulation.R.id.simulate)).perform(click())
-
     }
 
 }
