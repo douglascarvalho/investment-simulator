@@ -43,6 +43,23 @@ class SimulateActivity : BaseActivity(), FormValidation{
         rate.setupPercentFormat(this)
     }
 
+    override fun validate() {
+        simulateButton.isEnabled =
+            isValidAmount(amount.text.toString())
+                    && isValidRate(rate.text.toString())
+                    && isValidDate(maturityDate.text.toString())
+    }
+
+    private fun setupSimulateButton() {
+        simulateButton.onClick {
+            simulateViewModel.simulate(
+                amount.text.toString().toServerCurrency(),
+                maturityDate.text.toString().toServerDate(),
+                rate.text.toString()
+            )
+        }
+    }
+
     private fun observeViewModel() {
         simulateViewModel.viewState.observe(this, Observer {
             when (it) {
@@ -62,35 +79,4 @@ class SimulateActivity : BaseActivity(), FormValidation{
         TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
-    override fun validate() {
-        simulateButton.isEnabled = isValidAmount() && isValidRate() && isValidDate()
-    }
-
-    private fun isValidAmount() : Boolean {
-        val value = amount.text.toString().replace("R$", "")
-            .replace(".", "")
-            .replace(",", "")
-
-        return when (value.toFloatOrNull()) {
-            null -> false
-            else -> value.toFloat() / HUNDRED > 0.00
-        }
-    }
-
-    private fun isValidRate() = when (rate.text.toString().toIntOrNull()) {
-        null -> false
-        else -> true
-    }
-
-    private fun isValidDate() = maturityDate.text.toString().isValidDate()
-
-    private fun setupSimulateButton() {
-        simulateButton.onClick {
-            simulateViewModel.simulate(
-                amount.text.toString().toServerCurrency(),
-                maturityDate.text.toString().toServerDate(),
-                rate.text.toString()
-            )
-        }
-    }
 }
