@@ -1,4 +1,4 @@
-package com.doug.simulation.simulate.data
+package com.doug.simulation.data
 
 import com.google.gson.annotations.SerializedName
 

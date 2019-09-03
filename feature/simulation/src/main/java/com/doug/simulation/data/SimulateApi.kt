@@ -1,4 +1,4 @@
-package com.doug.simulation.simulate.data
+package com.doug.simulation.data
 
 import retrofit2.http.GET
 import retrofit2.http.Query

@@ -9,7 +9,7 @@ import com.doug.simulation.R
 import com.doug.simulation.result.SIMULATION_RESULT_KEY
 import com.doug.simulation.result.SimulationResult
 import com.doug.simulation.result.SimulationResultActivity
-import com.doug.simulation.simulate.injection.initializeSimulateModule
+import com.doug.simulation.injection.initializeSimulateModule
 import com.douglas.core.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 

@@ -1,6 +1,6 @@
 package com.doug.simulation.result
 
-import com.doug.simulation.simulate.data.SimulationResponse
+import com.doug.simulation.data.SimulationResponse
 
 class SimulationResultMapper {
 

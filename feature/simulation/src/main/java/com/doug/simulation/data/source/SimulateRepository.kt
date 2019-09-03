@@ -1,7 +1,7 @@
-package com.doug.simulation.simulate.data.source
+package com.doug.simulation.data.source
 
-import com.doug.simulation.simulate.data.SimulateApi
-import com.doug.simulation.simulate.data.SimulationRequest
+import com.doug.simulation.data.SimulateApi
+import com.doug.simulation.data.SimulationRequest
 
 class SimulateRepository(
     private val simulateApi: SimulateApi

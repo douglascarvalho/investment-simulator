@@ -1,9 +1,9 @@
-package com.doug.simulation.simulate.injection
+package com.doug.simulation.injection
 
 import com.doug.simulation.result.SimulationResultMapper
 import com.doug.simulation.simulate.SimulateViewModel
-import com.doug.simulation.simulate.data.SimulateApi
-import com.doug.simulation.simulate.data.source.SimulateRepository
+import com.doug.simulation.data.SimulateApi
+import com.doug.simulation.data.source.SimulateRepository
 import com.douglas.network.NetworkClient
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.core.context.loadKoinModules
