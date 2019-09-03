@@ -1,14 +1,9 @@
 package com.doug.simulation.simulate
 
-import androidx.test.espresso.Espresso
-import androidx.test.espresso.Espresso.onView
-import androidx.test.espresso.action.ViewActions.click
-import androidx.test.espresso.action.ViewActions.typeText
-import androidx.test.espresso.matcher.ViewMatchers
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.rule.ActivityTestRule
-import com.doug.simulation.FULL_JSON_FILE_PATH
-import com.doug.simulation.JsonReader
+import com.doug.simulation.EMPTY_SIMULATION_RESPONSE_FILE
+import com.doug.simulation.INVALID_SIMULATION_RESPONSE_FILE
 import com.doug.simulation.VALID_SIMULATION_RESPONSE_FILE
 import com.doug.simulation.data.SimulateApi
 import com.doug.simulation.data.source.SimulateRepository
@@ -17,7 +12,6 @@ import com.doug.simulation.result.SimulationResultMapper
 import com.douglas.network.NetworkClient
 import io.mockk.every
 import io.mockk.mockkStatic
-import okhttp3.mockwebserver.MockResponse
 import okhttp3.mockwebserver.MockWebServer
 import org.junit.After
 import org.junit.Before
@@ -27,6 +21,7 @@ import org.junit.runner.RunWith
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.core.context.loadKoinModules
 import org.koin.core.context.startKoin
+import org.koin.core.context.stopKoin
 import org.koin.dsl.module
 
 @RunWith(AndroidJUnit4::class)
@@ -61,35 +56,94 @@ class SimulateActivityTest  {
     @After
     fun tearDown() {
         server.shutdown()
+        stopKoin()
     }
 
     @Test
-    fun useAppContext() {
-        server.enqueue(MockResponse().setResponseCode(200).setBody(
-            JsonReader.getStringFromJsonFile(VALID_SIMULATION_RESPONSE_FILE)
-        ))
+    fun givenValidServerResponse_whenSimulate_shouldDisplaySimulationResultScreen() {
+        simulate {
+            setupServer(server, VALID_SIMULATION_RESPONSE_FILE)
+            startActvity(activityRule)
 
-        activityRule.launchActivity(null)
+            withAmount("500")
+            withMaturityDate("05052020")
+            withRate("50")
 
-        onView(ViewMatchers.withId(com.doug.simulation.R.id.amount))
-            .perform(click())
-            .perform(typeText("500"))
+            clickSimulateButton()
 
-        Espresso.pressBack()
+            checkResultIsDisplayed()
+            checkSimulateAgainButtonIsDisplayed()
+        }
+    }
 
-        onView(ViewMatchers.withId(com.doug.simulation.R.id.maturity_date))
-            .perform(click())
-            .perform(typeText("05052020"))
+    @Test
+    fun givenNullServerResponse_whenSimulate_shouldDisplayNetworkErrorMessage() {
+        simulate {
+            setupServer(server, EMPTY_SIMULATION_RESPONSE_FILE)
+            startActvity(activityRule)
 
-        Espresso.pressBack()
+            withAmount("500")
+            withMaturityDate("05052020")
+            withRate("50")
 
-        onView(ViewMatchers.withId(com.doug.simulation.R.id.rate))
-            .perform(click())
-            .perform(typeText("50"))
+            clickSimulateButton()
 
-        Espresso.pressBack()
+            checkErrorIsDisplayed("Ops, estamos em manutenção, voltamos já!")
+        }
+    }
 
-        onView(ViewMatchers.withId(com.doug.simulation.R.id.simulate)).perform(click())
+    @Test
+    fun givenInvalidServerResponse_whenSimulate_shouldDisplayErrorMessage() {
+        simulate {
+            setupServer(server, INVALID_SIMULATION_RESPONSE_FILE)
+            startActvity(activityRule)
+
+            withAmount("500")
+            withMaturityDate("05052020")
+            withRate("50")
+
+            clickSimulateButton()
+
+            checkErrorIsDisplayed("Ops, tivemos um problema com a sua requisição!")
+        }
+    }
+
+    @Test
+    fun givenInvalidMaturityDate_whenTrySimulate_shouldNotEnableButton() {
+        simulate {
+            startActvity(activityRule)
+
+            withAmount("500")
+            withMaturityDate("0505202")
+            withRate("50")
+
+            checkSimulateButtonIsDisabled()
+        }
+    }
+
+    @Test
+    fun givenInvalidAmount_whenTrySimulate_shouldNotEnableButton() {
+        simulate {
+            startActvity(activityRule)
+
+            withAmount("0")
+            withMaturityDate("05052020")
+            withRate("50")
+
+            checkSimulateButtonIsDisabled()
+        }
+    }
+
+    @Test
+    fun givenInvalidRate_whenTrySimulate_shouldNotEnableButton() {
+        simulate {
+            startActvity(activityRule)
+
+            withAmount("100")
+            withMaturityDate("05052020")
+
+            checkSimulateButtonIsDisabled()
+        }
     }
 
 }

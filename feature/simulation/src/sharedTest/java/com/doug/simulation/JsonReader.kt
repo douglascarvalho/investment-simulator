@@ -7,6 +7,7 @@ import java.io.FileReader
 
 const val VALID_SIMULATION_RESPONSE_FILE = "simulateResponse.json"
 const val INVALID_SIMULATION_RESPONSE_FILE = "invalidSimulateResponse.json"
+const val EMPTY_SIMULATION_RESPONSE_FILE = "emptySimulateResponse.json"
 
 const val FULL_JSON_FILE_PATH = "src/sharedTest/resources/json/"
 const val JSON_FILE_PATH = "json/"
