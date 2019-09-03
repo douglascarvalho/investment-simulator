@@ -1,10 +1,10 @@
 {
   "investmentParameter": {
-    "investedAmount": 5.05,
-    "yearlyInterestRate": 6.8255,
+    "investedAmount": null,
+    "yearlyInterestRate": null,
     "maturityTotalDays": 1616,
     "maturityBusinessDays": 1148,
-    "maturityDate": "2024-02-05T00:00:00",
+    "maturityDate": null,
     "rate": 0.0,
     "isTaxFree": false
   },

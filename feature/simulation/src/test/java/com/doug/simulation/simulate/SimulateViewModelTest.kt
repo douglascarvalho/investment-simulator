@@ -1,10 +1,9 @@
 package com.doug.simulation.simulate
 
 import androidx.lifecycle.Observer
-import com.doug.simulation.instantLiveDataAndCoroutineRule
-import com.doug.simulation.data.SimulationRequest
 import com.doug.simulation.data.SimulationResponse
 import com.doug.simulation.data.source.SimulateRepository
+import com.doug.simulation.instantLiveDataAndCoroutineRule
 import com.doug.simulation.result.SimulationResult
 import com.doug.simulation.result.SimulationResultMapper
 import com.nhaarman.mockitokotlin2.*
@@ -12,13 +11,12 @@ import kotlinx.coroutines.runBlocking
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
-import java.lang.RuntimeException
-import java.math.BigDecimal
 
 class SimulateViewModelTest {
 
     @get:Rule
     val rule = instantLiveDataAndCoroutineRule
+
     private val observer: Observer<SimulateViewState> = mock()
 
     private val repository: SimulateRepository = mock()
@@ -29,12 +27,13 @@ class SimulateViewModelTest {
     private val simulationResponse: SimulationResponse = mock()
     private val simulationResult: SimulationResult = mock()
 
-    private lateinit var simulationRequest: SimulationRequest
+    private val investedAmount = 10.toDouble()
+    private val rate = "100"
+    private val maturityDate = "05/05/2020"
 
     @Before
     fun setup() {
         viewModel.viewState.observeForever(observer)
-        simulationRequest = createSimulationRequest()
     }
 
     @Test
@@ -43,9 +42,7 @@ class SimulateViewModelTest {
             repository.simulate(any())
         }) doReturn null
 
-        viewModel.simulate(simulationRequest.investedAmount.toDouble(),
-            simulationRequest.rate,
-            simulationRequest.maturityDate)
+        viewModel.simulate(investedAmount, rate, maturityDate)
 
         verify(mapper, never()).mapToSimulationResult(any())
         verify(observer, never()).onChanged(SimulateViewState.Success(simulationResult))
@@ -65,9 +62,7 @@ class SimulateViewModelTest {
             mapper.mapToSimulationResult(simulationResponse)
         }) doThrow RuntimeException()
 
-        viewModel.simulate(simulationRequest.investedAmount.toDouble(),
-            simulationRequest.rate,
-            simulationRequest.maturityDate)
+        viewModel.simulate(investedAmount, rate, maturityDate)
 
         verify(observer, never()).onChanged(SimulateViewState.Success(simulationResult))
         verify(observer, never()).onChanged(SimulateViewState.NetworkError)
@@ -86,9 +81,7 @@ class SimulateViewModelTest {
             mapper.mapToSimulationResult(simulationResponse)
         }) doReturn simulationResult
 
-        viewModel.simulate(simulationRequest.investedAmount.toDouble(),
-            simulationRequest.rate,
-            simulationRequest.maturityDate)
+        viewModel.simulate(investedAmount, rate, maturityDate)
 
         verify(mapper, times(1)).mapToSimulationResult(simulationResponse)
         verify(observer, times(1)).onChanged(SimulateViewState.Success(simulationResult))
@@ -98,12 +91,5 @@ class SimulateViewModelTest {
         verifyNoMoreInteractions(observer)
         verifyNoMoreInteractions(mapper)
     }
-
-    private fun createSimulationRequest() =
-        SimulationRequest(
-            investedAmount = BigDecimal(10),
-            rate = "100",
-            maturityDate = "05/05/2020"
-        )
 
 }

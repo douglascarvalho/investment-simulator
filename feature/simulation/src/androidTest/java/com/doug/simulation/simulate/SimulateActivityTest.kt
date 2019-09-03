@@ -26,13 +26,9 @@ import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.core.context.loadKoinModules
 import org.koin.core.context.startKoin
 import org.koin.dsl.module
-import org.mockito.Mock
-import org.mockito.MockitoAnnotations
-
 
 @RunWith(AndroidJUnit4::class)
 class SimulateActivityTest  {
-
 
     @get:Rule
     var activityRule = ActivityTestRule(SimulateActivity::class.java, false, false)
@@ -44,13 +40,9 @@ class SimulateActivityTest  {
         server = MockWebServer()
         server.start()
 
-
         val retrofit  = NetworkClient.retrofit(server.url("/").toString()).create(SimulateApi::class.java)
-
         val repository = SimulateRepository(retrofit)
-
         val mapper = SimulationResultMapper()
-
         val viewModel = SimulateViewModel(repository, mapper)
 
         val simulateModule = module {
@@ -75,8 +67,7 @@ class SimulateActivityTest  {
     fun useAppContext() {
 
         server.enqueue(MockResponse().setResponseCode(200).setBody(""" 
-            
-
+{dfasdfasd}
         """.trimIndent()))
 
         activityRule.launchActivity(null)
@@ -91,7 +82,6 @@ class SimulateActivityTest  {
         Espresso.pressBack()
 
         onView(ViewMatchers.withId(com.doug.simulation.R.id.simulate)).perform(click())
-
 
     }
 
