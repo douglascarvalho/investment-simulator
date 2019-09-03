@@ -1,5 +1,6 @@
 package com.doug.simulation.simulate.injection
 
+import com.doug.simulation.result.SimulationResultMapper
 import com.doug.simulation.simulate.SimulateViewModel
 import com.doug.simulation.simulate.data.SimulateApi
 import com.doug.simulation.simulate.data.source.SimulateRepository
@@ -18,7 +19,9 @@ val simulateModule = module {
 
     single { SimulateRepository(get()) }
 
-    viewModel { SimulateViewModel(get()) }
+    single { SimulationResultMapper()  }
+
+    viewModel { SimulateViewModel(get(), get()) }
 
 }
 

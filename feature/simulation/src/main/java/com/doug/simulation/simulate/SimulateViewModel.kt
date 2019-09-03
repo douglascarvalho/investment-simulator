@@ -2,14 +2,17 @@ package com.doug.simulation.simulate
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.doug.simulation.result.SimulationResultMapper
 import com.doug.simulation.simulate.data.SimulationRequest
 import com.doug.simulation.simulate.data.source.SimulateRepository
 import com.douglas.core.BaseViewModel
 import kotlinx.coroutines.launch
+import java.lang.Exception
 import java.math.BigDecimal
 
 class SimulateViewModel(
-    private val simulateRepository: SimulateRepository
+    private val simulateRepository: SimulateRepository,
+    private val resultMapper: SimulationResultMapper
 ) : BaseViewModel() {
 
     private val state = MutableLiveData<SimulateViewState>()
@@ -21,13 +24,17 @@ class SimulateViewModel(
         rate: String
     ) {
         launch {
-            val request = SimulationRequest(
-                investedAmount = BigDecimal(amount), rate = rate, maturityDate = maturityDate
-            )
+            try {
+                val request = SimulationRequest(
+                    investedAmount = BigDecimal(amount), rate = rate, maturityDate = maturityDate
+                )
+                val simulationResponse = simulateRepository.simulate(request)
+                val result = resultMapper.mapToSimulationResult(simulationResponse)
 
-            val simulationResponse = simulateRepository.simulate(request)
-
-            state.value = SimulateViewState.Success
+                state.value = SimulateViewState.Success(result)
+            } catch (e: Exception) {
+                state.value = SimulateViewState.Error
+            }
         }
     }
 

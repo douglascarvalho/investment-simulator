@@ -6,6 +6,7 @@ dependencies {
     api "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     api 'androidx.appcompat:appcompat:1.0.2'
     api 'androidx.core:core-ktx:1.2.0-alpha03'
+    api 'androidx.fragment:fragment:1.2.0-alpha02'
 
     api 'junit:junit:4.12'
 

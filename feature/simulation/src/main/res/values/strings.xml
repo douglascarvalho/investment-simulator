@@ -7,4 +7,19 @@
     <string name="which_maturity_date">Qual a data de vencimento do investmento? *</string>
     <string name="amount_hint">R$</string>
     <string name="how_much_to_invest">Quanto você gostaria de aplicar? *</string>
+
+    <string name="result_description">Rendimento total de %s</string>
+    <string name="total_value">Valor bruto do investimento</string>
+    <string name="revenue_value">Valor do rendimento</string>
+    <string name="tax_value">IR sobre o investimento</string>
+    <string name="net_value">Valor líquido do invesimento</string>
+    <string name="date">Data de resgate</string>
+    <string name="counted_days">Dias corridos</string>
+    <string name="monthly_revenue">Rendimento mensal</string>
+    <string name="cdi_percent">Percentual do CDI do investimento</string>
+    <string name="annual_revenue">Rentabilidade anual</string>
+    <string name="period_profitability">Rentabilidade do período</string>
+    <string name="button_again">Simular novamente</string>
+    <string name="simulation_result">Resultado da simulação</string>
+    <string name="initial_value">Valor aplicado inicialmente</string>
 </resources>

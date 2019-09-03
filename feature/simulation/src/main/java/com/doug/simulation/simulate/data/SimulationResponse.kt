@@ -1,15 +1,31 @@
 package com.doug.simulation.simulate.data
 
-import java.math.BigDecimal
-import java.util.*
+import com.google.gson.annotations.SerializedName
 
 data class SimulationResponse(
-    val investmentParameter: InvestmentParameter
+
+    @SerializedName("investmentParameter")
+    val investmentResponse: InvestmentResponse,
+
+    val grossAmount: Double,
+    val taxesAmount: Double,
+    val netAmount: Double,
+    val grossAmountProfit: Double,
+    val netAmountProfit: Double,
+    val annualGrossRateProfit: Double,
+    val monthlyGrossRateProfit: Double,
+    val dailyGrossRateProfit: Double,
+    val taxesRate: Double,
+    val rateProfit: Double,
+    val annualNetRateProfit: Double
 )
 
-data class InvestmentParameter(
-    val investedAmount: BigDecimal?,
-    val maturityDate: Date?,
-    val maturityTotalDays: Int?,
-    val rate: String?
+data class InvestmentResponse(
+    val investedAmount: Double,
+    val yearlyInterestRate: Double,
+    val maturityTotalDays: Int,
+    val maturityBusinessDays: Int,
+    val maturityDate: String,
+    val rate: Double,
+    val isTaxFree: Boolean
 )

@@ -136,3 +136,14 @@ fun String.toDate(input: String, output: String): String {
     val d = inputFormat.parse(this)
     return outputFormat.format(d)
 }
+
+fun Double.toBrazilianCurrency() = NumberFormat
+    .getCurrencyInstance(Locale("pt_BR", "BR"))
+    .format(this).run {
+        replaceRange(
+            length - START_RANGE,
+            length - END_RANGE,
+            ",")
+    }
+
+fun Double.toPercent() = String.format("%.2f", this).plus("%")

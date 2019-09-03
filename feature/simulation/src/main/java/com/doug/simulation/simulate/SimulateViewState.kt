@@ -1,7 +1,9 @@
 package com.doug.simulation.simulate
 
+import com.doug.simulation.result.SimulationResult
+
 sealed class SimulateViewState {
-    object Success : SimulateViewState()
+    data class Success(val simulationResult: SimulationResult) : SimulateViewState()
     object Error : SimulateViewState()
     object NetworkError : SimulateViewState()
 }

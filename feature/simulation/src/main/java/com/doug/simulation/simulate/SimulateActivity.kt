@@ -1,10 +1,14 @@
 package com.doug.simulation.simulate
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import androidx.lifecycle.Observer
 import com.doug.simulation.R
+import com.doug.simulation.result.SIMULATION_RESULT_KEY
+import com.doug.simulation.result.SimulationResult
+import com.doug.simulation.result.SimulationResultActivity
 import com.doug.simulation.simulate.injection.initializeSimulateModule
 import com.douglas.core.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -41,8 +45,21 @@ class SimulateActivity : BaseActivity(), FormValidation{
 
     private fun observeViewModel() {
         simulateViewModel.viewState.observe(this, Observer {
-
+            when (it) {
+                is SimulateViewState.Success -> initResultActivity(it.simulationResult)
+                is SimulateViewState.Error -> initErrorActivity()
+            }
         })
+    }
+
+    private fun initResultActivity(simulationResult: SimulationResult) {
+        val intent = Intent(this, SimulationResultActivity::class.java)
+        intent.putExtra(SIMULATION_RESULT_KEY, simulationResult)
+        startActivity(intent)
+    }
+
+    private fun initErrorActivity() {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
     }
 
     override fun validate() {

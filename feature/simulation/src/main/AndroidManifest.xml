@@ -3,6 +3,7 @@
 
     <application>
         <activity android:name=".simulate.SimulateActivity" />
+        <activity android:name=".result.SimulationResultActivity" />
     </application>
 
 </manifest>

@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/frag_result"
+        tools:context="result.SimulationResultActivity">
+
+    <TextView
+            android:id="@+id/txt_result_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/simulation_result"
+            android:layout_marginTop="24dp"
+            android:textSize="12sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+    <TextView
+            android:id="@+id/txt_result_total_value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="R$ 1.088,69"
+            android:textColor="@color/gray"
+            android:textSize="24sp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txt_result_label"/>
+
+    <TextView
+            android:id="@+id/txt_result_total_revenue"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="Rendimento total de %s"
+            android:layout_marginTop="8dp"
+            android:textSize="12sp"
+            android:label="@string/initial_value"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txt_result_total_value"/>
+
+    <com.doug.ui.InvestmentTextView
+            android:id="@+id/lbl_initial_value"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:label="@string/initial_value"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txt_result_total_revenue"/>
+
+    <com.doug.ui.InvestmentTextView
+            android:id="@+id/lbl_total_value"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:label="@string/total_value"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/lbl_initial_value"/>
+
+    <com.doug.ui.InvestmentTextView
+            android:id="@+id/lbl_revenue_value"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:label="@string/revenue_value"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/lbl_total_value"/>
+
+    <com.doug.ui.InvestmentTextView
+            android:id="@+id/lbl_tax_value"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:label="@string/tax_value"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/lbl_revenue_value"/>
+
+    <com.doug.ui.InvestmentTextView
+            android:id="@+id/lbl_net_value"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:label="@string/net_value"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/lbl_tax_value"/>
+
+    <com.doug.ui.InvestmentTextView
+            android:id="@+id/lbl_date"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:label="@string/date"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/lbl_net_value"/>
+
+    <com.doug.ui.InvestmentTextView
+            android:id="@+id/lbl_counted_days"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:label="@string/counted_days"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/lbl_date"/>
+
+    <com.doug.ui.InvestmentTextView
+            android:id="@+id/lbl_monthly_revenue"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:label="@string/monthly_revenue"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/lbl_counted_days"/>
+
+    <com.doug.ui.InvestmentTextView
+            android:id="@+id/lbl_cdi_percent"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:label="@string/cdi_percent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/lbl_monthly_revenue"/>
+
+    <com.doug.ui.InvestmentTextView
+            android:id="@+id/lbl_annual_revenue"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:label="@string/annual_revenue"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/lbl_cdi_percent"/>
+
+    <com.doug.ui.InvestmentTextView
+            android:id="@+id/lbl_period_profitability"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:label="@string/period_profitability"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/lbl_annual_revenue"/>
+
+    <Button
+            style="@style/buttonInvestment"
+            android:id="@+id/frag_result_button"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="24dp"
+            android:text="Simular novamente"
+            app:layout_constraintTop_toBottomOf="@+id/lbl_period_profitability"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
