@@ -1,5 +1,6 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
+apply from: "../../jacoco.gradle"
 
 android {
     sourceSets {
@@ -11,6 +12,14 @@ android {
         androidTest {
             java.srcDirs += ['src/sharedTest/java']
             resources.srcDirs += ['src/sharedTest/resources']
+        }
+    }
+
+    testOptions {
+        unitTests.all {
+            jacoco {
+                includeNoLocationClasses = true
+            }
         }
     }
 }

@@ -30,3 +30,8 @@ classes/
 bin/
 gen/
 gen-external-apklibs/
+
+.DS_Store
+.DS_Store?
+
+*jacoco.exec
