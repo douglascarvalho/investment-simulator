@@ -15,6 +15,7 @@ def fileFilter = ["**/R.class",
                   "**/*_MembersInjector*.*",
                   "**/*_*Factory*.*",
                   "**/*Component*.*",
+                  "**/model/*",
                   "**/*Module*.*"]
 
 task jacocoTestReport(type: JacocoReport) {

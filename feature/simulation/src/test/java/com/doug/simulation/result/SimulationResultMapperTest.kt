@@ -3,7 +3,7 @@ package com.doug.simulation.result
 import com.doug.simulation.INVALID_SIMULATION_RESPONSE_FILE
 import com.doug.simulation.JsonReader.getObjectFromJsonFile
 import com.doug.simulation.VALID_SIMULATION_RESPONSE_FILE
-import com.doug.simulation.data.SimulationResponse
+import com.doug.simulation.data.model.SimulationResponse
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNotNull
 import org.junit.Test

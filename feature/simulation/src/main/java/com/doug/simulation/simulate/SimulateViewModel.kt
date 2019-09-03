@@ -3,7 +3,7 @@ package com.doug.simulation.simulate
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.doug.simulation.result.SimulationResultMapper
-import com.doug.simulation.data.SimulationRequest
+import com.doug.simulation.data.model.SimulationRequest
 import com.doug.simulation.data.source.SimulateRepository
 import com.douglas.core.BaseViewModel
 import kotlinx.coroutines.launch

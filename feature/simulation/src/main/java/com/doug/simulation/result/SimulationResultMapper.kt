@@ -1,6 +1,7 @@
 package com.doug.simulation.result
 
-import com.doug.simulation.data.SimulationResponse
+import com.doug.simulation.data.model.SimulationResponse
+import com.doug.simulation.result.model.SimulationResult
 
 class SimulationResultMapper {
 
@@ -14,7 +15,7 @@ class SimulationResultMapper {
             netAmount = simulationResponse.netAmount,
             maturityDate = simulationResponse.investmentResponse.maturityDate,
             maturityTotalDays = simulationResponse.investmentResponse.maturityTotalDays,
-            monthlyGrossRateProfit =  simulationResponse.monthlyGrossRateProfit,
+            monthlyGrossRateProfit = simulationResponse.monthlyGrossRateProfit,
             investmentRate = simulationResponse.investmentResponse.rate,
             annualGrossRateProfit = simulationResponse.annualGrossRateProfit,
             annualNetRateProfit = simulationResponse.annualNetRateProfit

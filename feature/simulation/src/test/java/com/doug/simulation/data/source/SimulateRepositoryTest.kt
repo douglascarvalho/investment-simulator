@@ -1,8 +1,8 @@
 package com.doug.simulation.data.source
 
 import com.doug.simulation.data.SimulateApi
-import com.doug.simulation.data.SimulationRequest
-import com.doug.simulation.data.SimulationResponse
+import com.doug.simulation.data.model.SimulationRequest
+import com.doug.simulation.data.model.SimulationResponse
 import com.nhaarman.mockitokotlin2.doReturn
 import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.whenever

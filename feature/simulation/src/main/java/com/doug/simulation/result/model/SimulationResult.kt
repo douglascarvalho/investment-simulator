@@ -1,4 +1,4 @@
-package com.doug.simulation.result
+package com.doug.simulation.result.model
 
 import android.os.Parcel
 import android.os.Parcelable

@@ -9,8 +9,8 @@ import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.lifecycle.Observer
 import com.doug.simulation.R
-import com.doug.simulation.result.SIMULATION_RESULT_KEY
-import com.doug.simulation.result.SimulationResult
+import com.doug.simulation.result.model.SIMULATION_RESULT_KEY
+import com.doug.simulation.result.model.SimulationResult
 import com.doug.simulation.result.SimulationResultActivity
 import com.doug.simulation.injection.initializeSimulateModule
 import com.douglas.core.*

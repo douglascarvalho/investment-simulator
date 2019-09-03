@@ -1,5 +1,6 @@
 package com.doug.simulation.data
 
+import com.doug.simulation.data.model.SimulationResponse
 import retrofit2.http.GET
 import retrofit2.http.Query
 import java.math.BigDecimal

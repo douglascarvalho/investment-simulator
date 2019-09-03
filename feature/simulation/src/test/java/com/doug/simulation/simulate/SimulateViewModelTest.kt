@@ -1,10 +1,10 @@
 package com.doug.simulation.simulate
 
 import androidx.lifecycle.Observer
-import com.doug.simulation.data.SimulationResponse
+import com.doug.simulation.data.model.SimulationResponse
 import com.doug.simulation.data.source.SimulateRepository
 import com.doug.simulation.instantLiveDataAndCoroutineRule
-import com.doug.simulation.result.SimulationResult
+import com.doug.simulation.result.model.SimulationResult
 import com.doug.simulation.result.SimulationResultMapper
 import com.nhaarman.mockitokotlin2.*
 import kotlinx.coroutines.runBlocking

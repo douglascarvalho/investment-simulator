@@ -1,8 +1,8 @@
 package com.doug.simulation.data.source
 
 import com.doug.simulation.data.SimulateApi
-import com.doug.simulation.data.SimulationRequest
-import com.doug.simulation.data.SimulationResponse
+import com.doug.simulation.data.model.SimulationRequest
+import com.doug.simulation.data.model.SimulationResponse
 import java.io.IOException
 
 class SimulateRepository(

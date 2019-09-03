@@ -3,6 +3,8 @@ package com.doug.simulation.result
 import android.os.Bundle
 import android.widget.TextView
 import com.doug.simulation.R
+import com.doug.simulation.result.model.SIMULATION_RESULT_KEY
+import com.doug.simulation.result.model.SimulationResult
 import com.doug.ui.InvestmentTextView
 import com.douglas.core.*
 
