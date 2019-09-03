@@ -68,8 +68,6 @@ class SimulateActivity : BaseActivity(), FormValidation{
         }
     }
 
-
-
     private fun observeViewModel() {
         simulateViewModel.viewState.observe(this, Observer {
             hideLoading()
