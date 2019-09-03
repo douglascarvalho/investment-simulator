@@ -8,16 +8,32 @@
         android:id="@+id/frag_result"
         tools:context="result.SimulationResultActivity">
 
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/top_margin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="25dp"
+        />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/bottom_margin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_end="25dp"
+        />
+
     <TextView
             android:id="@+id/txt_result_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/simulation_result"
             android:layout_marginTop="24dp"
-            android:textSize="12sp"
+            android:textSize="14sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
+            app:layout_constraintTop_toTopOf="@id/top_margin"/>
 
     <TextView
             android:id="@+id/txt_result_total_value"
@@ -25,7 +41,7 @@
             android:layout_height="wrap_content"
             tools:text="R$ 1.088,69"
             android:textColor="@color/gray"
-            android:textSize="24sp"
+            android:textSize="42sp"
             android:layout_marginTop="8dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -37,7 +53,7 @@
             android:layout_height="wrap_content"
             tools:text="Rendimento total de %s"
             android:layout_marginTop="8dp"
-            android:textSize="12sp"
+            android:textSize="14sp"
             android:label="@string/initial_value"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -161,6 +177,7 @@
             android:layout_marginTop="24dp"
             android:text="Simular novamente"
             app:layout_constraintTop_toBottomOf="@+id/lbl_period_profitability"
+            app:layout_constraintBottom_toBottomOf="@id/bottom_margin"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"/>
 

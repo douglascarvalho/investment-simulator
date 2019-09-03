@@ -2,8 +2,11 @@ package com.doug.simulation.simulate
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ProgressBar
+import android.widget.TextView
 import androidx.lifecycle.Observer
 import com.doug.simulation.R
 import com.doug.simulation.result.SIMULATION_RESULT_KEY
@@ -14,6 +17,9 @@ import com.douglas.core.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class SimulateActivity : BaseActivity(), FormValidation{
+
+    private val progressBar: ProgressBar by bindView(R.id.progressBar)
+    private val errorMessage: TextView by bindView(R.id.errorMessage)
 
     private val amount: EditText by bindView(R.id.amount)
     private val maturityDate: EditText by bindView(R.id.maturity_date)
@@ -52,6 +58,8 @@ class SimulateActivity : BaseActivity(), FormValidation{
 
     private fun setupSimulateButton() {
         simulateButton.onClick {
+            showLoading()
+            hideErrorMessage()
             simulateViewModel.simulate(
                 amount.text.toString().toServerCurrency(),
                 maturityDate.text.toString().toServerDate(),
@@ -60,11 +68,14 @@ class SimulateActivity : BaseActivity(), FormValidation{
         }
     }
 
+
+
     private fun observeViewModel() {
         simulateViewModel.viewState.observe(this, Observer {
+            hideLoading()
             when (it) {
                 is SimulateViewState.Success -> initResultActivity(it.simulationResult)
-                is SimulateViewState.Error -> initErrorActivity()
+                is SimulateViewState.Error -> showErrorMessage()
             }
         })
     }
@@ -75,8 +86,20 @@ class SimulateActivity : BaseActivity(), FormValidation{
         startActivity(intent)
     }
 
-    private fun initErrorActivity() {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    private fun showLoading() {
+        progressBar.visibility = View.VISIBLE
+    }
+
+    private fun hideLoading() {
+        progressBar.visibility = View.GONE
+    }
+
+    private fun showErrorMessage() {
+        errorMessage.visibility = View.VISIBLE
+    }
+
+    private fun hideErrorMessage() {
+        errorMessage.visibility = View.GONE
     }
 
 }

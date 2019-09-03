@@ -8,6 +8,8 @@
     <string name="amount_hint">R$</string>
     <string name="how_much_to_invest">Quanto você gostaria de aplicar? *</string>
 
+    <string name="error_message">Ops, tivemos um problema com a sua requisição!</string>
+
     <string name="result_description">Rendimento total de %s</string>
     <string name="total_value">Valor bruto do investimento</string>
     <string name="revenue_value">Valor do rendimento</string>
