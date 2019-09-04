@@ -77,6 +77,25 @@ class SimulateActivityTest  {
     }
 
     @Test
+    fun givenValidServerResponse_whenSimulateAgain_shouldReturnToSimulateScreen() {
+        simulate {
+            setupServer(server, VALID_SIMULATION_RESPONSE_FILE)
+            startActvity(activityRule)
+
+            withAmount("500")
+            withMaturityDate("05052020")
+            withRate("50")
+
+            clickSimulateButton()
+
+            checkResultIsDisplayed()
+
+            clickSimulateAgainButton()
+            checkSimulateButtonIsDisplayed()
+        }
+    }
+
+    @Test
     fun givenNullServerResponse_whenSimulate_shouldDisplayNetworkErrorMessage() {
         simulate {
             setupServer(server, EMPTY_SIMULATION_RESPONSE_FILE)
@@ -135,14 +154,14 @@ class SimulateActivityTest  {
     }
 
     @Test
-    fun givenInvalidRate_whenTrySimulate_shouldNotEnableButton() {
+    fun givenNoRate_whenTrySimulate_shouldEnableButton() {
         simulate {
             startActvity(activityRule)
 
             withAmount("100")
             withMaturityDate("05052020")
 
-            checkSimulateButtonIsDisabled()
+            checkSimulateButtonIsEnabled()
         }
     }
 

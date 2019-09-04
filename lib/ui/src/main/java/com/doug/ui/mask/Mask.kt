@@ -8,25 +8,23 @@ import java.util.*
 
 class Mask{
     companion object {
-        private fun replaceChars(cpfFull : String) : String{
-            return cpfFull.replace(".", "").replace("-", "")
+        private fun replaceChars(fullDate : String) : String{
+            return fullDate.replace(".", "").replace("-", "")
                 .replace("(", "").replace(")", "")
                 .replace("/", "").replace(" ", "")
                 .replace("*", "")
         }
 
-        fun mask(mask : String, etCpf : EditText) : TextWatcher {
+        fun mask(mask : String, editText : EditText) : TextWatcher {
 
-            val textWatcher : TextWatcher = object : TextWatcher {
+            return object : TextWatcher {
                 var isUpdating : Boolean = false
                 var oldString : String = ""
-                override fun beforeTextChanged(charSequence: CharSequence, i: Int, i1: Int, i2: Int) {
-
-                }
+                override fun beforeTextChanged(charSequence: CharSequence, i: Int, i1: Int, i2: Int) {}
 
                 override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
                     val str = replaceChars(s.toString())
-                    var cpfWithMask = ""
+                    var dateWithMask = ""
 
                     if (count == 0)//is deleting
                         isUpdating = true
@@ -40,11 +38,11 @@ class Mask{
                     var i = 0
                     for (m : Char in mask.toCharArray()){
                         if (m != '#' && str.length > oldString.length){
-                            cpfWithMask += m
+                            dateWithMask += m
                             continue
                         }
                         try {
-                            cpfWithMask += str.get(i)
+                            dateWithMask += str.get(i)
                         }catch (e : Exception){
                             break
                         }
@@ -52,17 +50,13 @@ class Mask{
                     }
 
                     isUpdating = true
-                    etCpf.setText(cpfWithMask)
-                    etCpf.setSelection(cpfWithMask.length)
+                    editText.setText(dateWithMask)
+                    editText.setSelection(dateWithMask.length)
 
                 }
 
-                override fun afterTextChanged(editable: Editable) {
-
-                }
+                override fun afterTextChanged(editable: Editable) {}
             }
-
-            return textWatcher
         }
 
         fun brazilianMonetaryFormat(ediTxt: EditText): TextWatcher {

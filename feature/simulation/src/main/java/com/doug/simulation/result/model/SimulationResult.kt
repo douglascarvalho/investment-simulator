@@ -1,10 +1,11 @@
 package com.doug.simulation.result.model
 
-import android.os.Parcel
 import android.os.Parcelable
+import kotlinx.android.parcel.Parcelize
 
 const val SIMULATION_RESULT_KEY = "SimulationResult"
 
+@Parcelize
 data class SimulationResult (
 
     val grossAmount: Double,
@@ -20,50 +21,4 @@ data class SimulationResult (
     val annualGrossRateProfit: Double,
     val annualNetRateProfit: Double
 
-) : Parcelable {
-
-    constructor(parcel: Parcel) : this(
-        parcel.readDouble(),
-        parcel.readDouble(),
-        parcel.readDouble(),
-        parcel.readDouble(),
-        parcel.readDouble(),
-        parcel.readString(),
-        parcel.readInt(),
-        parcel.readDouble(),
-        parcel.readDouble(),
-        parcel.readDouble(),
-        parcel.readDouble(),
-        parcel.readDouble()
-    ) {
-    }
-
-    override fun writeToParcel(parcel: Parcel, flags: Int) {
-        parcel.writeDouble(grossAmount)
-        parcel.writeDouble(grossAmountProfit)
-        parcel.writeDouble(investedAmount)
-        parcel.writeDouble(taxesAmount)
-        parcel.writeDouble(netAmount)
-        parcel.writeString(maturityDate)
-        parcel.writeInt(maturityTotalDays)
-        parcel.writeDouble(monthlyGrossRateProfit)
-        parcel.writeDouble(taxesRate)
-        parcel.writeDouble(investmentRate)
-        parcel.writeDouble(annualGrossRateProfit)
-        parcel.writeDouble(annualNetRateProfit)
-    }
-
-    override fun describeContents(): Int {
-        return 0
-    }
-
-    companion object CREATOR : Parcelable.Creator<SimulationResult> {
-        override fun createFromParcel(parcel: Parcel): SimulationResult {
-            return SimulationResult(parcel)
-        }
-
-        override fun newArray(size: Int): Array<SimulationResult?> {
-            return arrayOfNulls(size)
-        }
-    }
-}
+) : Parcelable

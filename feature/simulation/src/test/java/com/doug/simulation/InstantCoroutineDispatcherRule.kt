@@ -22,6 +22,7 @@ class InstantCoroutineDispatcherRule : TestWatcher() {
         Dispatchers.setMain(Dispatchers.Unconfined)
     }
 
+    @ExperimentalCoroutinesApi
     override fun finished(description: Description?) {
         super.finished(description)
         Dispatchers.resetMain()

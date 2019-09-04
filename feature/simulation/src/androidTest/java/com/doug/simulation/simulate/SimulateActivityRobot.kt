@@ -52,6 +52,10 @@ class SimulateActivityRobot {
     fun checkSimulateAgainButtonIsDisplayed() =
         onView(withText("Simular novamente")).check(matches(isDisplayed()))
 
+    fun checkSimulateButtonIsDisplayed() = onView(withText("Simular")).check(matches(isDisplayed()))
+
+    fun clickSimulateAgainButton() = onView(withId(R.id.simulate_again)).perform(click())
+
     fun checkErrorIsDisplayed(errorMessage: String) =
         onView(withId(R.id.errorMessage))
             .check(matches(isDisplayed()))
@@ -61,5 +65,10 @@ class SimulateActivityRobot {
         onView(withId(R.id.simulate))
             .check(matches(isDisplayed()))
             .check(matches(not(isEnabled())))
+
+    fun checkSimulateButtonIsEnabled() =
+        onView(withId(R.id.simulate))
+            .check(matches(isDisplayed()))
+            .check(matches(isEnabled()))
 
 }
