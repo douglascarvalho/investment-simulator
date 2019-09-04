@@ -9,9 +9,6 @@ Investment Simulator
 - Feature Module
 - Koin (injeção de dependência)
 
-![Image of Yaktocat](https://github.com/douglascarvalho/investment-simulator/blob/master/screens/input.png)
-![Image of Yaktocat](https://github.com/douglascarvalho/investment-simulator/blob/master/screens/result.png)
-
 ## Principais Bibliotecas
 
 | Plugin | Finalidade |
@@ -63,3 +60,7 @@ Rode o seguinte comando no diretório **investment-simulator**
 ```sh
 $ ./gradlew clean installDebug
 ```
+
+![Image of Yaktocat](https://github.com/douglascarvalho/investment-simulator/blob/master/screens/input.png)
+![Image of Yaktocat](https://github.com/douglascarvalho/investment-simulator/blob/master/screens/result.png)
+
