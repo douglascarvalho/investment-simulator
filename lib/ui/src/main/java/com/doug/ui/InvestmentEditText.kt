@@ -7,12 +7,16 @@ import android.util.AttributeSet
 import android.view.View
 import android.widget.EditText
 import com.doug.ui.mask.Mask
-import com.doug.ui.validators.AmountValidator
-import com.doug.ui.validators.UiValidator
+import com.doug.ui.validators.listener.ValidationListener
+import com.doug.ui.validators.ui.AmountValidator
+import com.doug.ui.validators.ui.DateValidator
+import com.doug.ui.validators.ui.NoValidator
+import com.doug.ui.validators.ui.UiValidator
 
 class InvestmentEditText(context: Context?, attrs: AttributeSet?) : EditText(context, attrs) {
 
-    private lateinit var uiValidator: UiValidator
+    private var uiValidator: UiValidator? = null
+    private var validationListener: ValidationListener? = null
 
     private val stateError = intArrayOf(R.attr.state_error)
     private var hasBeenEdited = false
@@ -21,13 +25,28 @@ class InvestmentEditText(context: Context?, attrs: AttributeSet?) : EditText(con
 
     init {
         val attributes = context?.obtainStyledAttributes(attrs, R.styleable.InvestmentEditText)
-        val type = attributes?.getString(0)
 
-        if (type == "monetary") {
-            uiValidator = AmountValidator
-            addTextChangedListener(Mask.brazilianMonetaryFormat( this))
+        when (attributes?.getString(0)) {
+            "monetary" -> setupMonetaryType()
+            "date" -> setupDateType()
+            "percent" -> setupPercentType()
+            else -> Unit
         }
-        init()
+    }
+
+    private fun setupMonetaryType() {
+        addTextChangedListener(Mask.brazilianMonetaryFormat( this))
+        initValidator(AmountValidator)
+    }
+
+    private fun setupPercentType() {
+        addTextChangedListener(Mask.percentageFormat(this))
+        initValidator(NoValidator)
+    }
+
+    private fun setupDateType() {
+        addTextChangedListener(Mask.mask( "##/##/####",this))
+        initValidator(DateValidator)
     }
 
     override fun onCreateDrawableState(extraSpace: Int): IntArray {
@@ -39,15 +58,17 @@ class InvestmentEditText(context: Context?, attrs: AttributeSet?) : EditText(con
     }
 
     fun forceUpdateState() {
-        shouldShowError = !uiValidator.isValid(text.toString())
+        shouldShowError = !uiValidator!!.isValid(text.toString())
         refreshDrawableState()
     }
 
     fun isValid(): Boolean {
-        return uiValidator.isValid(text.toString())
+        return uiValidator?.isValid(text.toString()) ?: false
     }
 
-    private fun init() {
+    private fun initValidator(validator: UiValidator) {
+        uiValidator = validator
+
         addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {}
 
@@ -56,6 +77,7 @@ class InvestmentEditText(context: Context?, attrs: AttributeSet?) : EditText(con
             override fun onTextChanged(text: CharSequence, start: Int, before: Int, count: Int) {
                 hasBeenEdited = true
                 forceUpdateState()
+                validationListener?.validate()
             }
         })
 
@@ -66,7 +88,11 @@ class InvestmentEditText(context: Context?, attrs: AttributeSet?) : EditText(con
     }
 
     private fun updateState() {
-        shouldShowError = !hasFocus && !uiValidator.isValid(text.toString()) && hasBeenEdited
+        shouldShowError = !hasFocus && !uiValidator!!.isValid(text.toString()) && hasBeenEdited
         refreshDrawableState()
+    }
+
+    fun setValidationListener(validationListener: ValidationListener) {
+        this.validationListener = validationListener
     }
 }

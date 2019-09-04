@@ -4,7 +4,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
-import android.widget.EditText
 import android.widget.ProgressBar
 import android.widget.TextView
 import androidx.lifecycle.Observer
@@ -13,17 +12,19 @@ import com.doug.simulation.result.model.SIMULATION_RESULT_KEY
 import com.doug.simulation.result.model.SimulationResult
 import com.doug.simulation.result.SimulationResultActivity
 import com.doug.simulation.injection.initializeSimulateModule
+import com.doug.ui.InvestmentEditText
+import com.doug.ui.validators.listener.ValidationListener
 import com.douglas.core.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class SimulateActivity : BaseActivity(), FormValidation{
+class SimulateActivity : BaseActivity(), ValidationListener {
 
     private val progressBar: ProgressBar by bindView(R.id.progressBar)
     private val errorMessage: TextView by bindView(R.id.errorMessage)
 
-    private val amount: EditText by bindView(R.id.amount)
-    private val maturityDate: EditText by bindView(R.id.maturity_date)
-    private val rate: EditText by bindView(R.id.rate)
+    private val amount: InvestmentEditText by bindView(R.id.amount)
+    private val maturityDate: InvestmentEditText by bindView(R.id.maturity_date)
+    private val rate: InvestmentEditText by bindView(R.id.rate)
 
     private val simulateButton: Button by bindView(R.id.simulate)
 
@@ -39,21 +40,18 @@ class SimulateActivity : BaseActivity(), FormValidation{
 
         observeViewModel()
 
-        setupSimulateForm()
+        setupSimulateFormValidationListener()
         setupSimulateButton()
     }
 
-    private fun setupSimulateForm() {
-        //amount.setupBrazilianCurrencyFormat(this)
-        maturityDate.setupDateFormat(this)
-        rate.setupPercentFormat(this)
+    private fun setupSimulateFormValidationListener() {
+        amount.setValidationListener(this)
+        maturityDate.setValidationListener(this)
+        rate.setValidationListener(this)
     }
 
     override fun validate() {
-        simulateButton.isEnabled =
-            isValidAmount(amount.text.toString())
-                    && isValidRate(rate.text.toString())
-                    && isValidDate(maturityDate.text.toString())
+        simulateButton.isEnabled = amount.isValid() && maturityDate.isValid() && rate.isValid()
     }
 
     private fun setupSimulateButton() {

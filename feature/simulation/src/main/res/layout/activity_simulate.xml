@@ -60,12 +60,13 @@
         android:text="@string/which_maturity_date"
         />
 
-    <EditText
+    <com.doug.ui.InvestmentEditText
         style="@style/simulateInputStyle"
         android:id="@+id/maturity_date"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:hint="@string/date_hint"
+        app:type="date"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/maturity_date_label"
@@ -83,12 +84,14 @@
         android:text="@string/which_CDI_percent"
         />
 
-    <EditText
+    <com.doug.ui.InvestmentEditText
         style="@style/simulateInputStyle"
         android:id="@+id/rate"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:hint="@string/rate_hint"
+        app:type="percent"
+        android:maxLength="4"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/rate_label"

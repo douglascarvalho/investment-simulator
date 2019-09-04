@@ -89,5 +89,39 @@ class Mask{
             }
         }
 
+        fun percentageFormat(ediTxt: EditText): TextWatcher {
+            return object : TextWatcher {
+
+                private var current = ""
+
+                override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
+
+                override fun afterTextChanged(s: Editable) {}
+
+                override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
+                    val changing = s.toString()
+
+                    if (changing != current) {
+                        val cleanString = if (current.isEmpty() || changing.contains("%")) {
+                            changing.replace("[%]".toRegex(), "").trim()
+                        } else {
+                            changing.trim().dropLast(1)
+                        }
+
+                        current = if (cleanString.isNotEmpty()) {
+                            val parsed = cleanString.toInt()
+                            "$parsed%"
+                        } else {
+                            cleanString
+                        }
+
+                        ediTxt.setText(current)
+                        ediTxt.setSelection(current.length)
+                    }
+                }
+
+            }
+        }
+
     }
 }

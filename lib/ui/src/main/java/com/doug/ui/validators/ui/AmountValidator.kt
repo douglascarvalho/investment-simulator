@@ -1,4 +1,4 @@
-package com.doug.ui.validators
+package com.doug.ui.validators.ui
 
 import com.douglas.core.HUNDRED
 
