@@ -1,9 +1,6 @@
 Investment Simulator
 =================
 
-![Image of Yaktocat](https://github.com/douglascarvalho/investment-simulator/blob/master/screens/input.png)
-![Image of Yaktocat](https://github.com/douglascarvalho/investment-simulator/blob/master/screens/result.png)
-
 ## Arquitetura (overview)
 
 - MVVM
@@ -11,6 +8,9 @@ Investment Simulator
 - Repository Pattern
 - Feature Module
 - Koin (injeção de dependência)
+
+![Image of Yaktocat](https://github.com/douglascarvalho/investment-simulator/blob/master/screens/input.png)
+![Image of Yaktocat](https://github.com/douglascarvalho/investment-simulator/blob/master/screens/result.png)
 
 ## Principais Bibliotecas
 
