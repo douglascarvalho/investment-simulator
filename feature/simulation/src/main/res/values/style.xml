@@ -14,6 +14,7 @@
         <item name="android:textSize">36sp</item>
         <item name="android:inputType">number</item>
         <item name="android:gravity">center_horizontal</item>
+        <item name="android:background">@drawable/bg_edittext</item>
     </style>
 
 </resources>

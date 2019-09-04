@@ -3,4 +3,13 @@
     <declare-styleable name="InvestmentTextView">
         <attr name="android:label" />
     </declare-styleable>
+
+    <declare-styleable name="EditTextErrorState">
+        <attr name="state_error" format="boolean"/>
+    </declare-styleable>
+
+    <declare-styleable name="InvestmentEditText">
+        <attr name="type" format="string"/>
+    </declare-styleable>
+
 </resources>

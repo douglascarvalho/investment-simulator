@@ -44,7 +44,7 @@ class SimulateActivity : BaseActivity(), FormValidation{
     }
 
     private fun setupSimulateForm() {
-        amount.setupBrazilianCurrencyFormat(this)
+        //amount.setupBrazilianCurrencyFormat(this)
         maturityDate.setupDateFormat(this)
         rate.setupPercentFormat(this)
     }

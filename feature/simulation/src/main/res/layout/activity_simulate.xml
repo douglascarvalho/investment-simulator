@@ -35,12 +35,13 @@
         android:text="@string/how_much_to_invest"
         />
 
-    <EditText
+    <com.doug.ui.InvestmentEditText
         style="@style/simulateInputStyle"
         android:id="@+id/amount"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:hint="@string/amount_hint"
+        app:type="monetary"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/amount_label"
