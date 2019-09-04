@@ -61,7 +61,7 @@ class SimulateActivity : BaseActivity(), ValidationListener {
             simulateViewModel.simulate(
                 amount.text.toString().toServerCurrency(),
                 maturityDate.text.toString().toServerDate(),
-                rate.text.toString()
+                rate.text.toString().toServerPercentage()
             )
         }
     }
