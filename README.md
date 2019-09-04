@@ -1,6 +1,9 @@
 Investment Simulator
 =================
 
+![Image of Yaktocat](https://github.com/easynvest/teste-android/blob/master/images/input.png)
+![Image of Yaktocat](https://github.com/easynvest/teste-android/blob/master/images/result.png)
+
 ## Arquitetura (overview)
 
 - MVVM
@@ -50,7 +53,9 @@ Rode o seguinte comando no diretório **investment-simulator/**
 $ ./gradlew clean jacocoTestReport
 ```
 
-Atualmente a cobertura da feature simulation está em 98%
+Atualmente a cobertura da feature simulation está em 98% (removendo as classes pojos):
+
+![Image of Yaktocat](https://github.com/easynvest/teste-android/blob/master/images/result.png)
 
 ## Como instalar no device
 
